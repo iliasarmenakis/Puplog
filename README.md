@@ -73,14 +73,23 @@ Puplog is modular and designed to easily add new parsers and detection modules. 
 Puplog is configurable via the config/settings.yml file. You can adjust the log file path and Discord webhook URL without modifying the code.
 
 1️⃣ Open the configuration file
+
 File path: config/settings.yml
 Open it in any text editor (Notepad, VS Code, nano, etc.).
+
 2️⃣ Update the log file path
+
 log_path: /path/to/your/logfile.log
+
 3️⃣ Update the Discord webhook (optional)
+
 discord_webhook: "https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX"
+
 4️⃣ Save the file
+
 After saving, run Puplog as usual:
+
 5️⃣ Notes
+
 Changes take effect the next time you run Puplog.
 JSON/CSV exports will still use the file paths defined in settings.yml (can also be updated there).
