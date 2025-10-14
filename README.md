@@ -61,9 +61,15 @@ Exporting
 <img width="610" height="809" alt="json" src="https://github.com/user-attachments/assets/58883e46-b32d-45ef-9f8b-a7029d88e772" />
 <img width="1832" height="513" alt="csv" src="https://github.com/user-attachments/assets/9819a52c-6cc1-4874-9527-6d41755d1f08" />
 
+
+
 - Discord Webhook reporting availability
 
+
+
+
 <img width="801" height="605" alt="discord" src="https://github.com/user-attachments/assets/a83ed31c-7afa-42d2-a66c-efbc2ab55c71" />
+
 
   
 ------------------------------------------------------------------------------------------------------------------------------------------------------
