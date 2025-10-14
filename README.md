@@ -1,7 +1,7 @@
 # Puplog
 Puplog – Lightweight Log Analysis &amp; Detection Tool
 
-<img width="1080" height="1080" alt="latest-2796948168" src="https://github.com/user-attachments/assets/2ccda30d-4e96-45f3-8645-f386278a53d2" />
+<img width="540" height="540" alt="latest-2796948168" src="https://github.com/user-attachments/assets/2ccda30d-4e96-45f3-8645-f386278a53d2" />
 
 
 Overview
@@ -89,7 +89,7 @@ Puplog provides an interactive CLI:
 9) Exit
 Enter choice [1-9]:
 
-<img width="696" height="289" alt="Capture" src="https://github.com/user-attachments/assets/c79c000d-7b03-40fb-bb24-7fc3f03664ba" />
+<img width="829" height="246" alt="Capture" src="https://github.com/user-attachments/assets/b3200c73-3dd2-4d48-838a-34e67c94d163" />
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
