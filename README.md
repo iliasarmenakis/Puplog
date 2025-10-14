@@ -20,9 +20,11 @@ Puplog is perfect for incident response automation, security tooling demos, and 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Detection Capabilities**
+
 Puplog currently includes multiple detection modules:
 
 Detection Types
+
 -> Brute-force attacks	          | Multiple failed logins from the same IP
 
 -> Privilege escalation           | sudo abuse, unexpected su sessions, suspicious processes
@@ -77,9 +79,13 @@ Enter choice [1-9]:
 **Contribution**
 
 Puplog is modular and designed to easily add new parsers and detection modules. Contributions are welcome:
+
 1 Add new detectors to detections/.
+
 2 Add new parsers to parsers/.
+
 3 Ensure pretty_print() and flatten_results() support new fields.
+
 4 Submit a pull request with tests and sample logs.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,9 +93,13 @@ Puplog is modular and designed to easily add new parsers and detection modules. 
 **Future Work / Roadmap**
 
 - Windows Event Log parsing
+  
 - SIEM integration (Elastic, Splunk)
+  
 - Dockerized one-command demo environment
+  
 - Continuous monitoring via systemd or container orchestrator
+  
 - Additional alert channels (Slack, Teams, email)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
