@@ -1,6 +1,9 @@
 # Puplog
 Puplog – Lightweight Log Analysis &amp; Detection Tool
-Puplog — Custom Log Analysis & Alerting Tool 🐶
+
+<img width="1080" height="1080" alt="latest-2796948168" src="https://github.com/user-attachments/assets/2ccda30d-4e96-45f3-8645-f386278a53d2" />
+
+
 Overview
 
 Puplog is a lightweight, modular log analysis and alerting tool designed for cybersecurity investigations and threat detection. It parses system and application logs, detects suspicious patterns, enriches alerts with context, and exports results for automation or reporting.
@@ -54,8 +57,14 @@ Detection Types
 Exporting
 
 - JSON and CSV export for integration with SIEMs, dashboards, or custom scripts.
-  
+
+<img width="610" height="809" alt="json" src="https://github.com/user-attachments/assets/58883e46-b32d-45ef-9f8b-a7029d88e772" />
+<img width="1832" height="513" alt="csv" src="https://github.com/user-attachments/assets/9819a52c-6cc1-4874-9527-6d41755d1f08" />
+
 - Discord Webhook reporting availability
+
+<img width="801" height="605" alt="discord" src="https://github.com/user-attachments/assets/a83ed31c-7afa-42d2-a66c-efbc2ab55c71" />
+
   
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -73,6 +82,9 @@ Puplog provides an interactive CLI:
 8) Run all detections
 9) Exit
 Enter choice [1-9]:
+
+<img width="696" height="289" alt="Capture" src="https://github.com/user-attachments/assets/c79c000d-7b03-40fb-bb24-7fc3f03664ba" />
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
