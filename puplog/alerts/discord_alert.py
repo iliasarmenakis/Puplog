@@ -1,10 +1,6 @@
 import requests
 
 def send_discord_alert(webhook_url, detections):
-    """
-    Sends a short summary of detections to a Discord webhook.
-    Handles different detection types safely.
-    """
     if not webhook_url:
         return
 
@@ -12,7 +8,7 @@ def send_discord_alert(webhook_url, detections):
         return
 
     lines = []
-    for d in detections[:10]:  # limit to 10 detections for brevity
+    for d in detections[:30]: 
         det_type = d.get("detection", "unknown")
         ip = d.get("ip", "N/A")
         msg = d.get("message", "")
@@ -40,3 +36,4 @@ def send_discord_alert(webhook_url, detections):
             print(f"[!] Discord responded with {response.status_code}: {response.text}")
     except Exception as e:
         print(f"[!] Failed to send Discord alert: {e}")
+
