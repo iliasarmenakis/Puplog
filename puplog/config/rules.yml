@@ -1,0 +1,13 @@
+bruteforce:
+  pattern: "Failed password for"
+  threshold: 5
+
+privilege_escalation:
+  patterns:
+    - "sudo:"
+    - "session opened for user root"
+    - "uid=0"
+    - "authentication failure; logname="
+
+port_scan:
+  unique_ports_threshold: 10

