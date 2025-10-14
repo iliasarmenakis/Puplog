@@ -12,6 +12,7 @@ Puplog is perfect for incident response automation, security tooling demos, and 
 **Log Parsing**
 
 -Linux syslog (/var/log/syslog), Windows Event Logs (planned), Apache logs.
+
 -Modular parser architecture for future log types.
 
 **Detection Capabilities**
@@ -19,22 +20,34 @@ Puplog currently includes multiple detection modules:
 
 Detection Types
 -> Brute-force attacks	          | Multiple failed logins from the same IP
+
 -> Privilege escalation           | sudo abuse, unexpected su sessions, suspicious processes
+
 -> Port scanning	                | Rapid connection attempts to multiple ports
+
 -> Network anomalies	            | Suspicious login times, failed logins per subnet, external access violations, unusual port usage
+
 -> System anomalies	              | New user accounts, suspicious file modifications, unexpected privilege escalations
+
 -> Log integrity & config         | Log gaps, repeated errors, configuration changes
+
 -> Malware / suspicious activity	| Known bad filenames, unexpected outbound connections, command injection patterns
+
 
 **Enrichment & Alerts**
 
 -- Adds context: sample log lines, first/last timestamps, host info.
+
 -- Optional geo IP lookup and reverse DNS enrichment.
+
 -- Alerting via Discord, with JSON and CSV export support.
+
 
 Exporting
 - JSON and CSV export for integration with SIEMs, dashboards, or custom scripts.
+- 
 - Discord Webhook reporting availability
+- 
 
 **Usage**
 Puplog provides an interactive CLI:
