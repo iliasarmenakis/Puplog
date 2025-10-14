@@ -1,4 +1,5 @@
-log_path: "samples/linux_syslog_sample.log"
-discord_webhook: "https://discord.com/api/webhooks/1427731352077471841/dsM2vuPoo6DGjioN_zRa1g5Z1eTvIIHbao8ksPWdCs4UvJWbOphwXy4dfmLkgVjPm03U"
+log_path: "/path/to/your/logfile.log"
+discord_webhook: "https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX"
 export_json: "detections.json"
 export_csv: "detections.csv"
+
