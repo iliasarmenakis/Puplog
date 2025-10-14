@@ -1,4 +1,3 @@
-# alerts/enrich.py
 import socket
 import time
 from datetime import datetime
@@ -7,7 +6,7 @@ from functools import lru_cache
 
 # optional imports
 try:
-    import geoip2.database  # MaxMind reader, optional
+    import geoip2.database  
 except Exception:
     geoip2 = None
 
@@ -16,11 +15,9 @@ try:
 except Exception:
     requests = None
 
-# Parser timestamp format (adjust if your parser uses a different one)
-# Example syslog timestamp: "Oct 14 10:20:01"
+# Parser timestamp format 
 SYSLOG_TS_FMT = "%b %d %H:%M:%S"
 
-# --- Helpers --------------------------------------------------------------
 
 def _parse_ts(ts_str, year=None):
     """
@@ -31,7 +28,6 @@ def _parse_ts(ts_str, year=None):
         return None
     year = year or datetime.utcnow().year
     try:
-        # some timestamps may not include year — append year for parsing
         dt = datetime.strptime(f"{ts_str} {year}", f"{SYSLOG_TS_FMT} %Y")
         return dt
     except Exception:
@@ -48,8 +44,6 @@ def _match_logs_for_ip(logs, ip):
         if ip in msg:
             matched.append(log)
     return matched
-
-# --- GeoIP ---------------------------------------------------------------
 
 class GeoIPEnricher:
     """
@@ -73,7 +67,6 @@ class GeoIPEnricher:
         """
         Return dict: {country, region, city, lat, lon, isp, org} or {} on failure.
         """
-        # Try local MaxMind
         if self._reader:
             try:
                 rec = self._reader.city(ip)
@@ -88,7 +81,6 @@ class GeoIPEnricher:
             except Exception:
                 pass
 
-        # Fallback to ip-api.com (simple free service; respect rate limits!)
         if self.use_web:
             try:
                 url = f"http://ip-api.com/json/{ip}?fields=status,country,regionName,city,lat,lon,isp,org,message"
@@ -110,8 +102,6 @@ class GeoIPEnricher:
                 pass
         return {}
 
-# --- Reverse DNS --------------------------------------------------------
-
 @lru_cache(maxsize=4096)
 def reverse_dns(ip, timeout=3):
     """
@@ -119,13 +109,10 @@ def reverse_dns(ip, timeout=3):
     Uses socket.gethostbyaddr; wrapped in try/except to avoid raising.
     """
     try:
-        # socket.gethostbyaddr may block; we keep it simple and rely on system DNS
         host, _, _ = socket.gethostbyaddr(ip)
         return host
     except Exception:
         return ""
-
-# --- Main enrichment function -------------------------------------------
 
 def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year=None, do_geo=True, do_rdns=True):
     """
@@ -142,7 +129,7 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
 
     enriched = []
     for d in detections:
-        det = dict(d)  # shallow copy to avoid mutating original if you prefer
+        det = dict(d) 
         ip = det.get("ip") or det.get("src_ip") or det.get("source_ip")
 
         # default placeholders
@@ -154,16 +141,13 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
 
         if ip:
             matched = _match_logs_for_ip(logs, ip)
-            # Collect timestamps
             ts_list = []
             samples = []
             for m in matched:
                 ts = _parse_ts(m.get("timestamp"), year=year)
                 if ts:
                     ts_list.append(ts)
-                # store raw message for sample
                 if len(samples) < sample_size:
-                    # include timestamp + message for context
                     tstr = m.get("timestamp", "")
                     samples.append(f"{tstr} {m.get('message','')}")
             if ts_list:
@@ -173,7 +157,7 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
                 det["last_seen"] = last
             det["sample_lines"] = samples
 
-            # GeoIP (optional)
+            
             if do_geo and ip:
                 try:
                     geo = geoip_enricher.lookup(ip)
@@ -190,11 +174,9 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
                     det["rdns"] = ""
 
         else:
-            # For detections without an IP (e.g., privilege_escalation),
-            # try to find sample lines by matching on message fragment or process
+            # For detections without an IP 
             fragment = det.get("message") or det.get("process") or det.get("indicator")
             if fragment:
-                # simple substring match for samples
                 samples = []
                 for m in logs:
                     if fragment in m.get("message", ""):
@@ -202,7 +184,6 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
                             samples.append(f"{m.get('timestamp','')} {m.get('message','')}")
                 if samples:
                     det["sample_lines"] = samples
-                    # set times based on samples if possible
                     ts_list = [_parse_ts(m.split(" ",3)[0]) for m in samples if m]
                     ts_list = [t for t in ts_list if t]
                     if ts_list:
@@ -212,3 +193,4 @@ def enrich_detections(detections, logs, geoip_enricher=None, sample_size=3, year
         enriched.append(det)
 
     return enriched
+
