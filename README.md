@@ -7,6 +7,8 @@ Puplog is a lightweight, modular log analysis and alerting tool designed for cyb
 
 Puplog is perfect for incident response automation, security tooling demos, and portfolio showcases.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
 !**Features**!
 
 **Log Parsing**
@@ -14,6 +16,8 @@ Puplog is perfect for incident response automation, security tooling demos, and 
 -Linux syslog (/var/log/syslog), Windows Event Logs (planned), Apache logs.
 
 -Modular parser architecture for future log types.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Detection Capabilities**
 Puplog currently includes multiple detection modules:
@@ -33,6 +37,7 @@ Detection Types
 
 -> Malware / suspicious activity	| Known bad filenames, unexpected outbound connections, command injection patterns
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Enrichment & Alerts**
 
@@ -42,12 +47,15 @@ Detection Types
 
 -- Alerting via Discord, with JSON and CSV export support.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Exporting
+
 - JSON and CSV export for integration with SIEMs, dashboards, or custom scripts.
-- 
+  
 - Discord Webhook reporting availability
-- 
+  
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Usage**
 Puplog provides an interactive CLI:
@@ -64,6 +72,7 @@ Puplog provides an interactive CLI:
 9) Exit
 Enter choice [1-9]:
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Contribution**
 
@@ -73,6 +82,8 @@ Puplog is modular and designed to easily add new parsers and detection modules. 
 3 Ensure pretty_print() and flatten_results() support new fields.
 4 Submit a pull request with tests and sample logs.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
 **Future Work / Roadmap**
 
 - Windows Event Log parsing
@@ -80,6 +91,8 @@ Puplog is modular and designed to easily add new parsers and detection modules. 
 - Dockerized one-command demo environment
 - Continuous monitoring via systemd or container orchestrator
 - Additional alert channels (Slack, Teams, email)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Changing Log Source and Discord Webhook**
 
