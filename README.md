@@ -1,14 +1,13 @@
 # Puplog
 Puplog – Lightweight Log Analysis &amp; Detection Tool
 
-<img width="270" height="270" alt="latest-2796948168" src="https://github.com/user-attachments/assets/2ccda30d-4e96-45f3-8645-f386278a53d2" />
+<img width="270" height="270" alt="latest-2796948168" src="" />
 
 
 Overview
 
 Puplog is a lightweight, modular log analysis and alerting tool designed for cybersecurity investigations and threat detection. It parses system and application logs, detects suspicious patterns, enriches alerts with context, and exports results for automation or reporting.
 
-Puplog is perfect for incident response automation, security tooling demos, and portfolio showcases.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
