@@ -1,7 +1,7 @@
 # Puplog
 Puplog – Lightweight Log Analysis &amp; Detection Tool
 
-<img width="270" height="270" alt="latest-2796948168" src="" />
+<img width="512" height="512" alt="puplog" src="https://github.com/user-attachments/assets/7fe47090-32d5-4e3f-88b6-840edd25109f">
 
 
 Overview
